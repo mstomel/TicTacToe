@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    Scanner hello = new Scanner(System.in);
+
     public static void main(String[] args) {
         new boardState();
-        Main a = new Main();
         Scanner hello = new Scanner(System.in);
+        //String[] player = {"2", "2"};
+        //int[] player = {2, 2};
 
         for (int i = 0; i<boardState.board.length; i++) {
             for (int j = 0; j<boardState.board.length; j++) {
@@ -24,13 +25,18 @@ public class Main {
 
         if (start == 0) {
             boardState.board[0][0] = "X ";
-            for (int i = 0; i<boardState.board.length; i++) {
-                for (int j = 0; j<boardState.board.length; j++) {
-                    System.out.print(boardState.board[i][j]);
-                }
-                System.out.println();
+            printBoard();
+            System.out.println("where would you like to play ex: 12 for (1,2)");
+            //player = hello.nextLine().split(" ");
+            System.out.print("");
+            userTurn(hello.next());
+            if (!boardState.board[1][1].equals("O ")) {
+                boardState.board[1][1] = "X ";
             }
-            System.out.println("where would you like to play ex: 1,2 for (1,2)");
+            else {
+                boardState.board[2][0] = "X ";
+            }
+            printBoard();
 
         }
         else if (start == 1) {
@@ -40,13 +46,24 @@ public class Main {
             System.out.println("invalid input");
         }
     }
-    public String[] UserPlace(String coordinates) {
-
-        String[] temp = coordinates.split(",");
-        return temp;
-
+    private static void printBoard() {
+        for (int i = 0; i<boardState.board.length; i++) {
+            for (int j = 0; j<boardState.board.length; j++) {
+                System.out.print(boardState.board[i][j]);
+            }
+            System.out.println();
+        }
     }
-    public boolean winCheck() {
+    private static void userTurn(String coordinates) {
+        boardState.board[Integer.valueOf(coordinates.substring(0, 1))][Integer.valueOf(coordinates.substring(1, 2))] = "O ";
+    }
+   /*public String[] UserPlace(String coordinates) {
+
+        //String[] temp = coordinates.split(",");
+        return coordinates.split(",");
+
+    }*/
+    public static boolean winCheck() {
 
         for (int i = 0; i <= 2; i++) {
             int Comp = 0, Use = 0;
