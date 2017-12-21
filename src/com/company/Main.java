@@ -8,8 +8,6 @@ public class Main {
     public static void main(String[] args) {
         new boardState();
         Scanner hello = new Scanner(System.in);
-        //String[] player = {"2", "2"};
-        //int[] player = {2, 2};
 
         for (int i = 0; i<boardState.board.length; i++) {
             for (int j = 0; j<boardState.board.length; j++) {
@@ -27,8 +25,6 @@ public class Main {
             boardState.board[0][0] = "X ";
             printBoard();
             System.out.println("where would you like to play ex: 12 for (1,2)");
-            //player = hello.nextLine().split(" ");
-            System.out.print("");
             userTurn(hello.next());
             if (!boardState.board[1][1].equals("O ")) {
                 boardState.board[1][1] = "X ";
@@ -38,12 +34,40 @@ public class Main {
             }
             printBoard();
 
+            System.out.println("where would you like to play?");
+            userTurn(hello.next());
+            if (boardState.board[2][0].equals("N ")) {
+                boardState.board[2][0] = "X ";
+            }
+            else if (boardState.board[1][1].equals("X ")) {
+                boardState.board[2][2] = "X ";
+            }
+            printBoard();
+            if (winCheck()) {
+                System.exit(1);
+            }
+
+
         }
         else if (start == 1) {
 
         }
         else {
             System.out.println("invalid input");
+        }
+    }
+    private static void blockCheck() {
+        Integer count, tempI, tempJ;
+        for (int i = 0; i<boardState.board.length; i++) {
+            count = 0; tempI = 0; tempJ = 0;
+            for (int j = 0; j<boardState.board.length; j++) {
+                if (boardState.board[i][j].equals("O ")) {
+                    count++;tempI+=i;tempJ+=j;
+                }
+                if (count == 2) {
+
+                }
+            }
         }
     }
     private static void printBoard() {
@@ -57,13 +81,7 @@ public class Main {
     private static void userTurn(String coordinates) {
         boardState.board[Integer.valueOf(coordinates.substring(0, 1))][Integer.valueOf(coordinates.substring(1, 2))] = "O ";
     }
-   /*public String[] UserPlace(String coordinates) {
-
-        //String[] temp = coordinates.split(",");
-        return coordinates.split(",");
-
-    }*/
-    public static boolean winCheck() {
+    private static boolean winCheck() {
 
         for (int i = 0; i <= 2; i++) {
             int Comp = 0, Use = 0;
@@ -126,14 +144,4 @@ public class Main {
         }
         return false;
     }
-    /*public void CPUFirst() {
-
-
-
-    }
-    public void UserFirst() {
-
-
-
-    }*/
 }
