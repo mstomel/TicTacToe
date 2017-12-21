@@ -56,7 +56,7 @@ public class Main {
             System.out.println("invalid input");
         }
     }
-    private static void blockCheck() {
+    private static boolean blockCheck() {
         Integer count, tempI, tempJ;
         for (int i = 0; i<boardState.board.length; i++) {
             count = 0; tempI = 0; tempJ = 0;
@@ -65,10 +65,121 @@ public class Main {
                     count++;tempI+=i;tempJ+=j;
                 }
                 if (count == 2) {
-
+                    if (tempI == 1) {
+                        if (tempJ==1) {
+                            boardState.board[2][2] = "X ";
+                            return true;
+                        }
+                        if (tempJ==2) {
+                            boardState.board[2][1] = "X ";
+                            return true;
+                        }
+                        if (tempJ==3) {
+                            boardState.board[2][0] = "X ";
+                            return true;
+                        }
+                    }
+                    if (tempI == 2) {
+                        if (tempJ==1) {
+                            boardState.board[1][2] = "X ";
+                            return true;
+                        }
+                        if (tempJ==2) {
+                            boardState.board[1][1] = "X ";
+                            return true;
+                        }
+                        if (tempJ==3) {
+                            boardState.board[1][0] = "X ";
+                            return true;
+                        }
+                    }
+                    if (tempI == 3) {
+                        if (tempJ==1) {
+                            boardState.board[0][2] = "X ";
+                            return true;
+                        }
+                        if (tempJ==2) {
+                            boardState.board[0][1] = "X ";
+                            return true;
+                        }
+                        if (tempJ==3) {
+                            boardState.board[0][0] = "X ";
+                            return true;
+                        }
+                    }
                 }
             }
         }
+        for (int j = 0; j<boardState.board.length; j++) {
+            count = 0; tempI = 0; tempJ = 0;
+            for (int i = 0; i<boardState.board.length; i++) {
+                if (boardState.board[j][i].equals("O ")) {
+                    count++;tempI+=i;tempJ+=j;
+                }
+                if (count == 2) {
+                    if (tempI == 1) {
+                        if (tempJ==1) {
+                            boardState.board[2][2] = "X ";
+                            return true;
+                        }
+                        if (tempJ==2) {
+                            boardState.board[2][1] = "X ";
+                            return true;
+                        }
+                        if (tempJ==3) {
+                            boardState.board[2][0] = "X ";
+                            return true;
+                        }
+                    }
+                    if (tempI == 2) {
+                        if (tempJ==1) {
+                            boardState.board[1][2] = "X ";
+                            return true;
+                        }
+                        if (tempJ==2) {
+                            boardState.board[1][1] = "X ";
+                            return true;
+                        }
+                        if (tempJ==3) {
+                            boardState.board[1][0] = "X ";
+                            return true;
+                        }
+                    }
+                    if (tempI == 3) {
+                        if (tempJ==1) {
+                            boardState.board[0][2] = "X ";
+                            return true;
+                        }
+                        if (tempJ==2) {
+                            boardState.board[0][1] = "X ";
+                            return true;
+                        }
+                        if (tempJ==3) {
+                            boardState.board[0][0] = "X ";
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        if (boardState.board[0][0].equals("X") && boardState.board[1][1].equals("X") && boardState.board[2][2].equals("X")) {
+            System.out.println("CPU wins");
+            return true;
+        }
+        else if (boardState.board[0][0].equals("O") && boardState.board[1][1].equals("O") && boardState.board[2][2].equals("O")) {
+            System.out.println("User wins");
+            return true;
+        }
+
+        if (boardState.board[2][0].equals("X") && boardState.board[1][1].equals("X") && boardState.board[0][2].equals("X")) {
+            System.out.println("CPU wins");
+            return true;
+        }
+        else if (boardState.board[2][0].equals("O") && boardState.board[1][1].equals("O") && boardState.board[0][2].equals("O")) {
+            System.out.println("User wins");
+            return true;
+        }
+        return false;
     }
     private static void printBoard() {
         for (int i = 0; i<boardState.board.length; i++) {
